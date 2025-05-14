@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sustainable Finance</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f8;
+      color: #2c3e50;
+    }
+
+    header {
+      background-color: #1a2a3a;
+      padding: 30px 20px;
+      color: white;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin: 0;
+    }
+
+    nav {
+      background-color: #273746;
+      padding: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    nav a {
+      color: #ecf0f1;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #48dbfb;
+    }
+
+    .content {
+      padding: 50px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    section h2 {
+      color: #0984e3;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+      margin-bottom: 30px;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      color: #2c3e50;
+      margin-top: 0;
+    }
+
+    .card small {
+      display: block;
+      margin-bottom: 10px;
+      color: #888;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    footer {
+      background-color: #1a2a3a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+  </style>
+
+  <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+  <script>
+    (function () {
+      // Initialize googletag if not already defined
+      window.googletag = window.googletag || { cmd: [] };
+
+      // Ad slot variables
+      let adSlot1, adSlot2, anchorSlot;
+      const refreshInterval = 30000; // 30 seconds - more user-friendly refresh rate
+      let refreshTimer;
+
+      // Function to set up ads
+      function setupAds() {
+        googletag.cmd.push(function () {
+          // Setup PubAds
+          const pubads = googletag.pubads();
+          pubads.enableSingleRequest();
+          pubads.setCentering(true);
+
+          // Apply geotargeting if available
+          if (window.geoTarget) {
+            pubads.setLocation(window.geoTarget);
+          }
+
+          // Define Ad Slots with consistent IDs
+          adSlot1 = googletag.defineSlot(
+            '/21952429235/sahajanand_finlyticspro.com_native',
+            [[300, 250], [320, 480], [250, 250], [300, 100], 'fluid', [336, 280]],
+            'ad-slot-1'
+          ).addService(pubads);
+
+          adSlot2 = googletag.defineSlot(
+            '/21952429235/sahajanand_finlyticspro.com_native',
+            [[300, 250], [320, 480], [250, 250], [300, 100], 'fluid', [336, 280]],
+            'ad-slot-2'
+          ).addService(pubads);
+
+          // Define anchor ad with proper ID
+          anchorSlot = googletag.defineOutOfPageSlot(
+            '/21952429235/sahajanand_finlyticspro.com_native',
+            googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR
+          );
+
+          if (anchorSlot) {
+            anchorSlot.addService(pubads);
+            // Use the correct ID for the anchor ad
+            anchorSlot.setElementId('ad-anchor-slot');
+          }
+
+          // Event listeners for ad loading
+          pubads.addEventListener('slotRenderEnded', function (event) {
+            // Handle ad render events if needed
+            const slotId = event.slot.getSlotElementId();
+            const isEmpty = event.isEmpty;
+
+            // Example: hide containers with no ads
+            if (isEmpty && document.getElementById(slotId)) {
+              document.getElementById(slotId).style.display = 'none';
+            }
+          });
+
+          // Enable services
+          googletag.enableServices();
+
+          // Display ads
+          try {
+            if (document.getElementById('ad-slot-1')) {
+              googletag.display('ad-slot-1');
+            }
+            if (document.getElementById('ad-slot-2')) {
+              googletag.display('ad-slot-2');
+            }
+            if (document.getElementById('ad-anchor-slot')) {
+              googletag.display('ad-anchor-slot');
+            }
+          } catch (error) {
+            console.log('Error displaying ads:', error);
+          }
+
+          // Set up periodic refresh with error handling
+          setupAdRefresh();
+        });
+      }
+
+      // Function to handle ad refresh
+      function setupAdRefresh() {
+        if (refreshTimer) {
+          clearInterval(refreshTimer);
+        }
+
+        refreshTimer = setInterval(function () {
+          try {
+            // Only refresh if slots exist and are defined
+            const slotsToRefresh = [];
+            if (adSlot1) slotsToRefresh.push(adSlot1);
+            if (adSlot2) slotsToRefresh.push(adSlot2);
+
+            if (slotsToRefresh.length > 0) {
+              googletag.cmd.push(function () {
+                googletag.pubads().refresh(slotsToRefresh);
+              });
+            }
+          } catch (error) {
+            console.log('Error refreshing ads:', error);
+            clearInterval(refreshTimer); // Stop trying on persistent errors
+          }
+        }, refreshInterval);
+      }
+
+      // Check for ad blockers (simple detection)
+      function checkAdBlocker() {
+        const testAd = document.createElement('div');
+        testAd.innerHTML = '&nbsp;';
+        testAd.className = 'adsbox';
+        document.body.appendChild(testAd);
+
+        setTimeout(function () {
+          if (testAd.offsetHeight === 0) {
+            console.log('Ad blocker detected');
+            // You can show a message to users or implement fallback content
+          }
+          document.body.removeChild(testAd);
+        }, 100);
+      }
+
+      // Initialize ads when DOM is ready
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        setupAds();
+        checkAdBlocker();
+      } else {
+        document.addEventListener('DOMContentLoaded', function () {
+          setupAds();
+          checkAdBlocker();
+        });
+      }
+
+      // Clean up on page unload
+      window.addEventListener('beforeunload', function () {
+        if (refreshTimer) {
+          clearInterval(refreshTimer);
+        }
+      });
+    })();
+
+  </script>
+
+  <style>
+    #banner-ad {
+      width: 100%;
+      max-width: 425px;
+      margin: 1rem auto 0.5rem;
+      padding: 0.5rem;
+      box-shadow: 0 4px 15px var(--shadow-dark);
+      border-radius: 8px;
+      position: relative;
+      text-align: center;
+      border: 1px solid var(--accent-gold);
+    }
+
+    #banner-ad::before {
+      content: "Advertisement";
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--accent-gold);
+      background: var(--primary-dark);
+      padding: 0 8px;
+      border-radius: 4px;
+      border: 1px solid var(--accent-gold);
+    }
+
+    .ad-divider {
+      width: 90%;
+      max-width: 425px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+      margin: 0.5rem auto;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      max-width: 425px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, #0d001a 0%, #1a0033 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 0 40px var(--shadow-dark);
+      border-left: 1px solid var(--accent-gold);
+      border-right: 1px solid var(--accent-gold);
+    }
+
+    .tabs-container {
+      width: 100%;
+      max-width: 425px;
+      padding: 1rem;
+      background: rgba(178, 145, 209, 0.95);
+      border-bottom: 2px solid var(--accent-gold);
+    }
+
+    */ .tab-content.active {
+      display: block;
+    }
+
+    .category-title {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--accent-gold);
+      text-align: center;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 10px var(--shadow-light);
+      font-family: 'Orbitron', sans-serif;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+    <h1>Sustainable Finance</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="financial-strategies.html">Financial Strategies</a>
+    <a href="global-markets.html">Global Markets</a>
+    <a href="economic-cooperation.html">Economic Cooperation</a>
+    <a href="sustainable-finance.html">Sustainable Finance</a>
+  </nav>
+
+  <div class="content">
+    <section>
+      <!-- ads units  -->
+
+      <div id="banner-ad" class="ads-box">
+        <div id="ad-slot-1" class="ad-container" style="display: block !important;"></div>
+      </div>
+      <h2>Sustainable Finance</h2>
+
+      <div class="card">
+        <h3>Investment in Green Infrastructure</h3>
+        <small>Posted on March 10, 2025</small>
+        <p>The G20 has committed to increasing investment in green infrastructure, such as renewable energy projects,
+          sustainable transportation systems, and climate-resilient urban development. This is part of a broader
+          strategy to meet international climate goals while fostering economic growth. By incentivizing private sector
+          participation and public-private partnerships, the G20 aims to drive long-term sustainable development across
+          the globe.</p>
+      </div>
+
+      <div class="card">
+        <h3>Climate-Resilient Development Funding</h3>
+        <small>Posted on March 11, 2025</small>
+        <p>In a major push towards sustainability, the G20 has introduced new funding mechanisms to support developing
+          countries in achieving climate-resilient development. This includes providing concessional loans and grants
+          for projects focused on mitigating the impact of climate change, such as water management, agriculture, and
+          disaster risk reduction.</p>
+      </div>
+
+      <div class="card">
+        <h3>Financial Instruments for Climate Action</h3>
+        <small>Posted on March 12, 2025</small>
+        <p>The G20 has introduced new financial instruments to support climate action, including green bonds and
+          climate-related investment funds. These instruments are designed to attract capital for projects that have a
+          measurable positive impact on the environment, such as carbon reduction and sustainable farming initiatives.
+          The G20 aims to scale up these financial instruments to drive large-scale environmental change.</p>
+      </div>
+    </section>
+  </div>
+  <!-- ads units  -->
+
+  <div id="banner-ad" class="ads-box">
+    <div id="ad-slot-2" class="ad-container" style="display: block !important;"></div>
+  </div>
+  <footer>
+    &copy; 2025 finlyticspro.com All rights reserved.
+  </footer>
+
+  <!-- ads  -->
+  <div id="ad-anchor-slot"></div>
+
+  <script>
+    // Disable right-click
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+      alert('Right-click is disabled to protect our content.');
+    });
+
+    // Disable keyboard shortcuts
+    document.onkeydown = function (e) {
+      if (
+        (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'c' || e.key === 'i' || e.key === 'j')) ||
+        e.key === 'F12' ||
+        (e.metaKey && e.altKey && e.key === 'i')
+      ) {
+        e.preventDefault();
+        alert('Access to developer tools and source code is disabled to protect our content.');
+        return false;
+      }
+      return true;
+    };
+
+    // Disable text selection
+    document.addEventListener('selectstart', function (e) {
+      e.preventDefault();
+    });
+
+    // Disable drag and drop
+    document.addEventListener('dragstart', function (e) {
+      e.preventDefault();
+    });
+  </script>
+
+  <script>
+    window.googletag = window.googletag || { cmd: [] };
+    var anchorSlot;
+    googletag.cmd.push(function () {
+      anchorSlot = googletag.defineOutOfPageSlot('/21952429235/sahajanand_investobay.com_native', googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR);
+      if (anchorSlot) {
+        anchorSlot.addService(googletag.pubads());
+      }
+      googletag.pubads().enableSingleRequest();
+      googletag.enableServices();
+    });
+  </script>
+
+</body>
+
+</html>
